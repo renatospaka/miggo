@@ -1,0 +1,28 @@
+version: "3.5"
+
+services:
+  app:
+    build: .
+    container_name: miggos_app
+    volumes:
+      - .:/app
+    ports:
+      - 3050:8080
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
+  db:
+    image: postgres:13
+    container_name: miggos_db
+    restart: always
+    tty: true
+    volumes:
+      - $HOME/postgres/pgdata-13:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=thisislocal#noneedtoworry
+      - POSTGRES_USER=local_dev
+      - POSTGRES_DB=miggos
+    ports:
+      - 5432:5432
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
