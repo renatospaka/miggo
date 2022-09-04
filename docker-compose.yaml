@@ -5,7 +5,7 @@ services:
     build: .
     container_name: miggos_app
     volumes:
-      - .:/app
+      - .:/home/node/app
     ports:
       - 3000:8080
     depends_on:
