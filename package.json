@@ -11,18 +11,25 @@
     "build": "npx tsc --version && npx tsc -p tsconfig.json",
     "start:docker": ". ./start_local_docker.sh",
     "clean:db": ". ./clean_local_db.sh",
-    "start:db": ". ./start_local_db.sh"
+    "start:db": ". ./start_local_db.sh",
+    "test": "clear && npm run tsc -- --noEmit && jest",
+    "tsc": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^28.1.6",
     "express": "^4.18.1",
+    "jest": "^28.1.3",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.3"
   },
   "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.218",
+    "@swc/jest": "^0.2.22",
     "@types/bcrypt": "^5.0.0",
     "@types/body-parser": "^1.19.2",
     "@types/cookie-parser": "^1.4.3",
