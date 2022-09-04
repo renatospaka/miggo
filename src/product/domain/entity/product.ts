@@ -3,14 +3,12 @@ export default class Product {
   private _name: string;
   private _price: number;
   private _omieCode: string;
-  private _discount: number = 0;
   private _active: boolean = false;
 
   constructor(id: string, name: string, price: number, omieCode: string) {
     this._id = id;
     this._name = name;
     this._price = price;
-    this._discount = 0;
     this._omieCode = omieCode;
     this.validate();
   }
@@ -37,14 +35,6 @@ export default class Product {
     if (this._price < 0) {
       throw new Error("price must be greater than zero");
     }
-
-    if (this._discount < 0) {
-      throw new Error("discount can not be less than zero");
-    }
-
-    if (this._discount > this._price) {
-      throw new Error("discount can not be greater than the price of the product");
-    }
   }
 
   get id(): string {
@@ -52,7 +42,7 @@ export default class Product {
   }
 
   get omieCode(): string {
-    return this.omieCode;
+    return this._omieCode;
   }
 
   changeOmieCode(omieCode: string): void {
@@ -61,7 +51,7 @@ export default class Product {
   }
 
   get name(): string {
-    return this.name;
+    return this._name;
   }
 
   changeName(name: string): void {
@@ -70,7 +60,7 @@ export default class Product {
   }
 
   get price(): number {
-    return this.price;
+    return this._price;
   }
 
   changePrice(price: number): void {
