@@ -21,6 +21,8 @@ export default class Order {
 
   private validate() {
     this._valid = false;
+    this.total();
+
     if (this._id.length === 0) {
       throw new Error("id is required");
     }
@@ -41,7 +43,6 @@ export default class Order {
       throw new Error("freight cannot be negative");
     }
 
-    this.total();
     this._valid = true;
   }
 
@@ -77,7 +78,7 @@ export default class Order {
   }
 
   total(): number {
-    this._total = this._items.reduce((acc, item) => acc + (item.total()), 0) + this._freight;
+    this._total = this._items.reduce((acc, item) => acc + (item.total()), 0) + (this._freight - this._discount);
     this.totalDiscount();
     return this._total;
   }

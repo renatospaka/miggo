@@ -23,8 +23,10 @@ export default class OrderItem {
 
   private validate() {
     this._valid = false;
+    this.total();
+
     if (this._id.length === 0) {
-      throw new Error("id is required");
+      throw new Error("item id is required");
     }
 
     if (this._productId.length === 0) {
@@ -55,11 +57,10 @@ export default class OrderItem {
       throw new Error("discount cannot be negative");
     }
 
-    if (this._quantity > this._price) {
-      throw new Error("dicount cannot be higher than price");
+    if (this.discount > this._price) {
+      throw new Error("discount cannot be higher than price");
     }
 
-    this.total();
     this._valid = true;
   }
 
