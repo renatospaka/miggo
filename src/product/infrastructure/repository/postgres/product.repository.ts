@@ -12,4 +12,8 @@ export default class ProductRepository implements ProductRepositoryInterface {
       productModel.omieCode
     );
   }
+
+  async create(entity: Product): Promise<void> {
+    await console.error("not implemented");
+  }
 }
