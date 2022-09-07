@@ -13,7 +13,7 @@ export default class ProductRepository implements ProductRepositoryInterface {
     );
   }
 
-  async create(entity: Product): Promise<void> {
-    await console.error("not implemented");
+  create(entity: Product): Promise<void> {
+    throw new Error("Method not implemented.");
   }
 }
