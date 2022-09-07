@@ -2,17 +2,17 @@ import OrderItem from "./orderItem";
 
 export default class Order {
   private _id: string;
-  private _customerId: string;
+  private _userId: string;
   private _freight: number;
   private _discount: number;
-  private _items:OrderItem[];
+  private _items: OrderItem[];
   private _total: number;
   private _totalDiscount: number;
   private _valid: boolean = false;
 
-  constructor(id: string, customerId: string, freight: number, discount: number, items: OrderItem[]) {
+  constructor(id: string, userId: string, freight: number, discount: number, items: OrderItem[]) {
     this._id = id;
-    this._customerId = customerId;
+    this._userId = userId;
     this._freight = freight;
     this._discount = discount;
     this._items = items;
@@ -27,8 +27,8 @@ export default class Order {
       throw new Error("id is required");
     }
 
-    if (this._customerId.length === 0) {
-      throw new Error("customer id is required");
+    if (this._userId.length === 0) {
+      throw new Error("user id is required");
     }
 
     if (this._items.length === 0) {
@@ -43,6 +43,11 @@ export default class Order {
       throw new Error("freight cannot be negative");
     }
 
+    const total = this._items.reduce((acc, item) => acc + (item.total()), 0) + this._freight;
+    if (this.totalDiscount() > total) {
+      throw new Error("total discount cannot be higher than total price");
+    }
+
     this._valid = true;
   }
 
@@ -50,8 +55,8 @@ export default class Order {
     return this._id;
   }
 
-  get customerId(): string {
-    return this._customerId;
+  get userId(): string {
+    return this._userId;
   }
 
   get discount(): number {

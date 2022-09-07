@@ -35,11 +35,11 @@ describe("Order unit tests", () => {
     expect(total).toBe(25);
   });
 
-  it("should throw error when customer id is empty", () => {
+  it("should throw error when user id is empty", () => {
     expect(() => {
       const item = new OrderItem("o1", 10, 2, 0, "p1", "omie1");
       const order = new Order("o1", "", 10, 0, [item]);
-    }).toThrowError("customer id is required");
+    }).toThrowError("user id is required");
   });
 
   it("should throw error when order items is empty", () => {
@@ -67,4 +67,12 @@ describe("Order unit tests", () => {
     const order = new Order("o1", "Customer 1", 10, 0, [item]);
     expect(order.valid()).toBe(true);
   });
+
+  // it("should throw error when total discount is higher than total price", () => {
+  //   const item1 = new OrderItem("i1", 100, 1, 0, "p1", "omie1");
+  //   const item2 = new OrderItem("i2", 200, 1, 0, "p2", "omie2");
+  //   expect(() => {
+  //     const order = new Order("o2", "Customer 2", 10, 350, [item1, item2]);
+  //   }).toThrowError("total discount cannot be higher than total price");
+  // });
 });
