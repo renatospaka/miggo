@@ -1,5 +1,5 @@
 const fs = require('fs');
-require('dotenv').config()
+require('dotenv').config();
 
 const db_name = process.env.OPS_DB_NAME
 const username = process.env.OPS_DB_USERNAME
