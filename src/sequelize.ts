@@ -31,8 +31,6 @@ export function initSequelize(): Sequelize {
     console.log('No port defined')
     process.exit(1)
   }
-  const order = require('../src/order/infrastructure/db/sequelize/model/order.model');
-  const orderItem = require('../src/order/infrastructure/db/sequelize/model/orderItem.model');
 
   const sequelize: Sequelize = new Sequelize({
     repositoryMode: true,
@@ -50,7 +48,7 @@ export function initSequelize(): Sequelize {
     define: {
       paranoid: true
     },
-    models: [order, orderItem]
+    models: [__dirname + '/order/infrastructure/db/sequelize/model']
   })
 
   return sequelize

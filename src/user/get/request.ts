@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { Sequelize } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 import { UserController } from "./controller";
 
 export function getUser(sequelize: Sequelize): RequestHandler {

@@ -14,15 +14,15 @@ app.get('/', (req, res, next) => {
   res.json('Hello world')
 })
 
-const sequelize = initSequelize()
-const userRequest = getUser(sequelize);
-app.get('/user/:uuid', userRequest);
-app.get('/user', userRequest);
-
+const sequelize = initSequelize();
 (async () => {
   await sequelize.sync({ force: true });
 });
 
+
+const userRequest = getUser(sequelize);
+app.get('/user/:uuid', userRequest);
+app.get('/user', userRequest);
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`)
 });
