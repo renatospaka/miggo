@@ -10,14 +10,15 @@ const port = process.env.API_PORT || 4001
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+const sequelize = initSequelize();
+(async () => {
+  // await sequelize.sync();
+  await sequelize.sync({ force: true });
+})();
+
 app.get('/', (req, res, next) => {
   res.json('Hello world')
 })
-
-const sequelize = initSequelize();
-(async () => {
-  await sequelize.sync({ force: true });
-})();
 
 const userRequest = getUser(sequelize);
 app.get('/user/:uuid', userRequest);
