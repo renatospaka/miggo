@@ -1,20 +1,25 @@
-import { Model, Table, PrimaryKey, Column } from "sequelize-typescript";
+import { Model, Table, PrimaryKey, Column, HasMany, IsUUID } from "sequelize-typescript";
+import OrderItemModel from "../../../../../order/infrastructure/db/sequelize/model/orderItem.model";
 
 @Table({
   tableName: "products",
   timestamps: true,
 })
 export default class ProductModel extends Model {
+  @IsUUID(4)
   @PrimaryKey
   @Column
-  declare uuid: string;
+  uuid: string;
 
   @Column({ allowNull: false })
-  declare omieCode: string;
+  omieCode: string;
 
   @Column({ allowNull: false })
-  declare name: string;
+  name: string;
 
   @Column({ allowNull: false })
-  declare price: number;
+  price: number;
+
+  @HasMany(() => OrderItemModel)
+  orderItems: OrderItemModel[];
 }
