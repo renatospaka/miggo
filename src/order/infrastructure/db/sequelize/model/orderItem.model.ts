@@ -1,39 +1,36 @@
-import { BelongsTo, Column, CreatedAt, ForeignKey, Model, NotNull, PrimaryKey, Table, UpdatedAt } from "sequelize-typescript";
-import Order from "./order.model";
+import { Model, Table, Column, PrimaryKey, BelongsTo, ForeignKey, IsUUID } from "sequelize-typescript";
+import ProductModel from "../../../../../product/infrastructure/db/sequelize/model/product.model";
+import OrderModel from "./order.model";
 
 @Table({ tableName: "order_items", timestamps: true })
-export default class OrderItem extends Model {
+export default class OrderItemModel extends Model {
+  @IsUUID(4)
   @PrimaryKey
   @Column
-  uuidItem: string;
+  uuid: string;
 
-  @ForeignKey(() => Order)
-  @Column({ allowNull:false })
+  @IsUUID(4)
+  @ForeignKey(() => OrderModel)
+  @Column({ allowNull: false })
   orderId: string;
 
-  @BelongsTo(() => Order)
-  order: Order;
+  @BelongsTo(() => OrderModel)
+  order: OrderModel;
 
-  @Column({ allowNull:false })
+  @IsUUID(4)
+  @ForeignKey(() => ProductModel)
+  @Column({ allowNull: false })
   productId: string;
 
-  @Column({ allowNull:false })
-  productOmieId: string;
+  @BelongsTo(() => ProductModel)
+  product: ProductModel;
 
-  @Column({ allowNull:false })
+  @Column({ allowNull: false })
   price: number;
 
-  @Column({ allowNull:false })
+  @Column({ allowNull: false })
   quantity: number;
 
-  @Column({ allowNull:false })
+  @Column({ allowNull: false })
   discount: number;
-
-  @CreatedAt
-  @Column({ allowNull:false })
-  createdAt: Date;
-
-  @UpdatedAt
-  @Column({ allowNull:false })
-  updatedAt: Date;
 }
