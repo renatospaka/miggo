@@ -17,8 +17,7 @@ app.get('/', (req, res, next) => {
 const sequelize = initSequelize();
 (async () => {
   await sequelize.sync({ force: true });
-});
-
+})();
 
 const userRequest = getUser(sequelize);
 app.get('/user/:uuid', userRequest);

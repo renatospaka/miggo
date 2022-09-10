@@ -1,4 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
+import OrderModel from './order/infrastructure/db/sequelize/model/order.model'
+import OrderItemModel from './order/infrastructure/db/sequelize/model/orderItem.model'
 
 const db_name = process.env.OPS_DB_NAME
 const username = process.env.OPS_DB_USERNAME
@@ -48,8 +50,8 @@ export function initSequelize(): Sequelize {
     define: {
       paranoid: true
     },
-    models: [__dirname + '/order/infrastructure/db/sequelize/model']
   })
 
+  sequelize.addModels([OrderModel, OrderItemModel]);
   return sequelize
 }
