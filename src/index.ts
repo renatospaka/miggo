@@ -1,4 +1,4 @@
-import * as express from 'express'
+import express from 'express'
 import { initSequelize } from './sequelize'
 import { getUser } from './user/get/request'
 

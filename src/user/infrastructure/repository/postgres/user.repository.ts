@@ -16,9 +16,18 @@ export default class UserRepository implements UserRepositoryInterface {
     );
   }
 
-  async create(entity: User): Promise<void> {
-    console.log("create(entity: User): Promise<void>");
+  async findAll(): Promise<User> {
+    // const usersModel = await UserModel.findAll();
+    // return new User(
+    //   // userModel.id,
+    //   // userModel.name,
+    //   // userModel.email,
+    //   // userModel.omieUser
+    // );
+    throw new Error("Implement me");
+  }
 
+  async create(entity: User): Promise<void> {
     const userModel = new UserModel;
     await UserModel.create({
       id: entity.id,
