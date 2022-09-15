@@ -12,8 +12,8 @@ app.use(express.urlencoded({ extended: true }))
 
 const sequelize = initSequelize();
 (async () => {
-  // await sequelize.sync();
-  await sequelize.sync({ force: true });
+  // await sequelize.sync({ force: true });
+  await sequelize.sync();
 })();
 
 app.get('/', (req, res, next) => {
