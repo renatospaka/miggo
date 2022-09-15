@@ -6,7 +6,8 @@
 export default {
   // Use swc with jest
   transform: {
-    "^.+\.(t|j)sx?$": ["@swc/jest"],
+    // "^.+\.(t|j)sx?$": ["@swc/jest"],
+    "^.+\.tsx?$": ["@swc/jest"],
   },
   
   // All imported modules in your tests should be mocked automatically
