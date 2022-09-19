@@ -30,7 +30,7 @@ describe("Customer repository test", () => {
   it("should find a user", async () =>{
     const userRepo = new UserRepository();
     const user = new User(uuid, "User 1", "email@conta.com", "omie 1");
-    // await userRepo.create(user);
+    await userRepo.create(user);
     
     // const userResult = user;
     const userResult = await userRepo.find(user.id);
