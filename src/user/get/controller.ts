@@ -1,20 +1,24 @@
-import { Sequelize } from "sequelize";
-import { initUserModel } from "../model";
+import { DataTypes, Sequelize } from "sequelize";
+import UserModel from "../infrastructure/db/sequelize/model/user.model";
+// import { initUserModel } from "../infrastructure/db/sequelize/model/model";
 
 export class UserController {
 
-  private userModel: ReturnType<typeof initUserModel>
+  // private userModel: ReturnType<typeof initUserModel>
 
-  constructor (sequelize: Sequelize) {
-    this.userModel = initUserModel(sequelize)
-  }
+  constructor () {}
+  //   this.userModel = initUserModel(sequelize)
+  // }
 
   async getAll() {
-    return this.userModel.findAll()
+    // return this._userModel.findAll()
+    throw new Error("Implement me");
+    
   }
 
-  async getbyId(uuid: string) {
-    return this.userModel.findByPk(uuid)
+  async getbyId(uuid: { type: typeof DataTypes.UUID }) {
+    // return this._userModel.findByPk(uuid);
+    throw new Error("Implement me");
   }
 
 }
