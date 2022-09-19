@@ -3,7 +3,7 @@ export default class Product {
   private _name: string;
   private _price: number;
   private _omieCode: string;
-  private _active: boolean = false;
+  private _valid: boolean = false;
 
   constructor(id: string, name: string, price: number, omieCode: string) {
     this._id = id;
@@ -13,14 +13,14 @@ export default class Product {
     this.validate();
   }
 
-  validate() {
-    this._active = false;
+  validate(): void {
+    this._valid = false;
 
     if (this._id.length === 0) {
       throw new Error("id is required");
     }
 
-    if (this.omieCode.length === 0) {
+    if (this._omieCode.length === 0) {
       throw new Error("omie code is required");
     }
 
@@ -35,6 +35,7 @@ export default class Product {
     if (this._price < 0) {
       throw new Error("price must be greater than zero");
     }
+    this._valid = true;
   }
 
   get id(): string {
@@ -66,5 +67,9 @@ export default class Product {
   changePrice(price: number): void {
     this._price = price;
     this.validate()
+  }
+
+  get valid(): boolean {
+    return this._valid;
   }
 }
